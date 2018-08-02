@@ -1,0 +1,26 @@
+html, * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 30px;
+}
+
+/* Form styles */
+form {
+  max-width: 400px;
+}
+
+fieldset {
+  border: 0;
+  padding-left: 0;
+}
+
+legend {
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+#measure-unit div {
+  display: inline-block;
+}

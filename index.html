@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Race Calculator</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-</head>
-<body>
-  <h1>Race Calculator</h1>
-  <script src="main.js"></script>  
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Race Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  </head>
+  <body>
+    <h1>Race Calculator</h1>
+
+    <form>
+      <fieldset id="measure-unit">
+        <div>
+          <input type="radio" name="miles" id="miles" checked>
+          <label for="miles">Miles</label>
+        </div>
+        <div>
+          <input type="radio" name="km" id="km">
+          <label for="km">Km</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+          <legend>Distance</legend>
+          <div>
+            <input type="radio" name="marathon" id="marathon">
+            <label for="marathon">Marathon</label>
+          </div>
+          <div>
+            <input type="radio" name="half-marathon" id="half-marathon">
+            <label for="half-marathon">Half-Marathon</label>
+          </div>
+          <div>
+            <input type="radio" name="10K" id="10K">
+            <label for="10K">10K</label>
+          </div>
+          <div>
+            <input type="radio" name="5K" id="5K">
+            <label for="5K">5K</label>
+          </div>
+      </fieldset> 
+
+      <fieldset>
+        <legend>Complete one of the following fields</legend>
+        <div>
+          <label for="final-time-hour">Final time:</label>
+          <select id="final-time-hour"></select>
+          <select id="final-time-min"></select>
+          <select id="final-time-sec"></select>
+        </div>
+        <div>
+          <label for="pace-time-min">Pace time:</label>
+          <select id="pace-time-min"></select>
+          <select id="pace-time-sec"></select>
+        </div>
+      </fieldset>
+      <div>
+        <button type="button">Calculate</button>
+        <button type="button">Reset</button>
+      </div>
+    </form>
+    
+    <script src="main.js"></script>  
+  </body>
 </html>
