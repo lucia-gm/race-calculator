@@ -20,8 +20,9 @@ calculator.getFinalTime = function() {
   let paceSecSelect = document.querySelector('#pace-time .sec');
   calculator.paceMinutes = getSelectedOption(paceMinSelect);
   calculator.paceSeconds = getSelectedOption(paceSecSelect);
-  calculator.finalTime = Number(calculator.paceSeconds) + Number(calculator.paceMinutes) * calculator.distance;
-  console.log(calculator.finalTime);
+  calculator.finalTimeInSeconds = Number(calculator.paceSeconds) + Number(calculator.paceMinutes) * calculator.distance;
+  calculator.finalTime = secondsToHms(calculator.finalTimeInSeconds);
+  console.log(`You will finish the race in ${calculator.finalTime}.`);
 }
 
 
