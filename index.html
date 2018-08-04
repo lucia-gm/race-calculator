@@ -11,33 +11,22 @@
     <h1>Race Calculator</h1>
 
     <form>
-      <fieldset id="measure-unit">
-        <div>
-          <input type="radio" name="unit" id="miles" checked>
-          <label for="miles">Miles</label>
-        </div>
-        <div>
-          <input type="radio" name="unit" id="km">
-          <label for="km">Km</label>
-        </div>
-      </fieldset>
-
       <fieldset>
           <legend>Distance</legend>
           <div>
-            <input type="radio" name="distance" id="marathon">
+            <input type="radio" name="distance" id="marathon" value="26.2">
             <label for="marathon">Marathon</label>
           </div>
           <div>
-            <input type="radio" name="distance" id="half-marathon">
+            <input type="radio" name="distance" id="half-marathon" value="13.1">
             <label for="half-marathon">Half-Marathon</label>
           </div>
           <div>
-            <input type="radio" name="distance" id="10K">
+            <input type="radio" name="distance" id="10K" value="6.2">
             <label for="10K">10K</label>
           </div>
           <div>
-            <input type="radio" name="distance" id="5K">
+            <input type="radio" name="distance" id="5K" value="3.1">
             <label for="5K">5K</label>
           </div>
       </fieldset> 
@@ -50,14 +39,25 @@
           <select class="min"></select>
           <select class="sec"></select>
         </div>
-        <div>
+        <div id="pace-time">
           <label>Pace time:</label>
           <select class="min"></select>
           <select class="sec"></select>
         </div>
       </fieldset>
+
+      <fieldset id="measure-unit">
+        <div>
+          <input type="radio" name="unit" id="miles" checked>
+          <label for="miles">min/mi</label>
+        </div>
+        <div>
+          <input type="radio" name="unit" id="km">
+          <label for="km">min/km</label>
+        </div>
+      </fieldset>
       <div>
-        <button type="button">Calculate</button>
+        <button type="button" id="calculate-button">Calculate</button>
         <button type="reset">Reset</button>
       </div>
     </form>

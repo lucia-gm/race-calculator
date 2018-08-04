@@ -3,7 +3,7 @@ function createHourOptions() {
     const hourOption = document.createElement('option');
 
     hourOption.text = i + ' h';
-    hourOption.value = i;
+    hourOption.value = i * 3600;
 
     calculator.ui.hourSelect.appendChild(hourOption);
   }
@@ -16,7 +16,7 @@ function createMinSecOptions() {
 
     minOption.text = i + ' min';
     secOption.text = i + ' sec';
-    minOption.value = i;
+    minOption.value = i * 60;
     secOption.value = i;
 
     calculator.ui.minSelect.forEach(function(select) {
@@ -27,4 +27,8 @@ function createMinSecOptions() {
       select.appendChild(secOption.cloneNode(true));
     }) 
   }
+}
+
+function getSelectedOption(select) {
+    return select.options[select.selectedIndex].value;
 }
