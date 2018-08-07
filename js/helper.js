@@ -32,7 +32,7 @@ function createMinSecOptions() {
 
 
 function getSelectedOption(select) {
-    return select.options[select.selectedIndex].value;
+    return Number(select.options[select.selectedIndex].value);
 }
 
 // Function from https://stackoverflow.com/questions/37096367/how-to-convert-seconds-to-minutes-and-hours-in-javascript/37096512
