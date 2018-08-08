@@ -35,16 +35,16 @@ function getSelectedOption(select) {
     return Number(select.options[select.selectedIndex].value);
 }
 
-// Function from https://stackoverflow.com/questions/37096367/how-to-convert-seconds-to-minutes-and-hours-in-javascript/37096512
+// Function inspired by https://stackoverflow.com/questions/37096367/how-to-convert-seconds-to-minutes-and-hours-in-javascript/37096512
 function secondsToHms(d) {
   d = Number(d);
-  var h = Math.floor(d / 3600);
-  var m = Math.floor(d % 3600 / 60);
-  var s = Math.floor(d % 3600 % 60);
+  let h = Math.floor(d / 3600);
+  let m = Math.floor(d % 3600 / 60);
+  let s = Math.floor(d % 3600 % 60);
 
-  var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
-  var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
-  var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
-  
-  return hDisplay + mDisplay + sDisplay; 
+  let hDisplay = h == 0 ? '' : (h < 10 ? `0${h}:` : `${h}:`);
+  let mDisplay = m < 10 ? `0${m}:` : `${m}:`;
+  let sDisplay = s < 10 ? `0${s}` : `${s}`;  
+
+  return hDisplay + mDisplay + sDisplay;
 }
