@@ -14,7 +14,6 @@ calculator.ui.measureInMiles = document.querySelector('#miles');
 calculator.ui.measureInKm = document.querySelector('#km');
 calculator.ui.calculateButton = document.querySelector('#calculate-button');
 
-
 // Logical Variables
 calculator.distance;
 calculator.unit;
@@ -43,8 +42,8 @@ calculator.getFinalTime = function() {
 
   calculator.paceMinutes = getSelectedOption(paceMinSelect);
   calculator.paceSeconds = getSelectedOption(paceSecSelect);
-  calculator.finalTimeInSeconds = (calculator.paceSeconds + calculator.paceMinutes) * calculator.distance;
-  calculator.finalTime = secondsToHms(calculator.finalTimeInSeconds);
+  calculator.paceTimeInSeconds = calculator.paceSeconds + calculator.paceMinutes;
+  calculator.finalTime = getTotalTime(calculator.paceTimeInSeconds, calculator.distance);
 
   return `You will finish the race in ${calculator.finalTime}.`;
 }
@@ -76,6 +75,36 @@ calculator.getTimeRequested = function() {
     time = calculator.getFinalTime();
   }
   console.log(time);
+  calculator.displayResult(time);
+}
+
+
+calculator.displayResult = function() {
+  const tableContainer = document.querySelector('table');
+  const paceCalculated = Math.floor(calculator.paceTimeInSeconds);
+  const pace5SecSlower = Math.floor(calculator.paceTimeInSeconds - 5);
+  const pace5SecFaster = Math.floor(calculator.paceTimeInSeconds + 5);
+  let pace = paceCalculated;
+  let paceSlower = pace5SecSlower;
+  let paceFaster = pace5SecFaster;
+  
+  for (let row = 1; row < calculator.distance; row++) {
+    let gridRow = document.createElement('tr');
+    gridRow.innerHTML = `<th>${row}</th><td>${secondsToHms(paceSlower)}</td><td>${secondsToHms(pace)}</td><td>${secondsToHms(paceFaster)}</td>`;
+    tableContainer.append(gridRow);
+    pace += paceCalculated;
+    paceSlower += pace5SecSlower;
+    paceFaster += pace5SecFaster;
+  }
+  
+  let lastRow = document.createElement('tr');
+  let distanceName = document.querySelector('input[name="distance"]:checked').id;
+
+  lastRow.innerHTML = `<th>${distanceName}</th>
+                      <td>${getTotalTime(pace5SecSlower, calculator.distance)}</td>
+                      <td>${getTotalTime(paceCalculated, calculator.distance)}</td>
+                      <td>${getTotalTime(pace5SecFaster, calculator.distance)}</td>`;
+  tableContainer.append(lastRow);
 }
 
 

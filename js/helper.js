@@ -35,6 +35,12 @@ function getSelectedOption(select) {
     return Number(select.options[select.selectedIndex].value);
 }
 
+
+function getTotalTime(time, distance) {
+  return secondsToHms(time * distance);
+}
+
+
 // Function inspired by https://stackoverflow.com/questions/37096367/how-to-convert-seconds-to-minutes-and-hours-in-javascript/37096512
 function secondsToHms(d) {
   d = Number(d);
