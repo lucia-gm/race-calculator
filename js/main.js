@@ -26,7 +26,7 @@ calculator.getDistance = function() {
 
   if (calculator.ui.measureInMiles.checked) {
     calculator.distance = calculator.distanceInMiles;
-    calculator.unit = "mile";
+    calculator.unit = "mi";
   } else {
     calculator.distance = calculator.distanceInMiles * 1.609344;
     calculator.unit = "km";
@@ -87,6 +87,14 @@ calculator.displayResult = function() {
   let pace = paceCalculated;
   let paceSlower = pace5SecSlower;
   let paceFaster = pace5SecFaster;
+
+  let firstRow = document.createElement('tr');
+  firstRow.innerHTML = 
+    `<th>Distance(${calculator.unit})</th>
+    <th>${secondsToHms(paceSlower)}/${calculator.unit}</th>
+    <th>${secondsToHms(pace)}/${calculator.unit}</th>
+    <th>${secondsToHms(paceFaster)}/${calculator.unit}</th>`;
+  tableContainer.append(firstRow);
   
   for (let row = 1; row < calculator.distance; row++) {
     let gridRow = document.createElement('tr');
@@ -100,10 +108,11 @@ calculator.displayResult = function() {
   let lastRow = document.createElement('tr');
   let distanceName = document.querySelector('input[name="distance"]:checked').id;
 
-  lastRow.innerHTML = `<th>${distanceName}</th>
-                      <td>${getTotalTime(pace5SecSlower, calculator.distance)}</td>
-                      <td>${getTotalTime(paceCalculated, calculator.distance)}</td>
-                      <td>${getTotalTime(pace5SecFaster, calculator.distance)}</td>`;
+  lastRow.innerHTML = 
+    `<th>${distanceName}</th>
+    <td>${getTotalTime(pace5SecSlower, calculator.distance)}</td>
+    <td>${getTotalTime(paceCalculated, calculator.distance)}</td>
+    <td>${getTotalTime(pace5SecFaster, calculator.distance)}</td>`;
   tableContainer.append(lastRow);
 }
 
