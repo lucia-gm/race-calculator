@@ -13,6 +13,9 @@ calculator.ui.secSelect = document.querySelectorAll('.sec');
 calculator.ui.measureInMiles = document.querySelector('#miles');
 calculator.ui.measureInKm = document.querySelector('#km');
 calculator.ui.calculateButton = document.querySelector('#calculate-button');
+calculator.ui.resetButton = document.querySelector('#reset-button');
+calculator.ui.tableContainer = document.querySelector('table');
+
 
 // Logical Variables
 calculator.distance;
@@ -80,7 +83,6 @@ calculator.getTimeRequested = function() {
 
 
 calculator.displayResult = function() {
-  const tableContainer = document.querySelector('table');
   const paceCalculated = Math.floor(calculator.paceTimeInSeconds);
   const pace5SecSlower = Math.floor(calculator.paceTimeInSeconds - 5);
   const pace5SecFaster = Math.floor(calculator.paceTimeInSeconds + 5);
@@ -94,12 +96,12 @@ calculator.displayResult = function() {
     <th>${secondsToHms(paceSlower)}/${calculator.unit}</th>
     <th>${secondsToHms(pace)}/${calculator.unit}</th>
     <th>${secondsToHms(paceFaster)}/${calculator.unit}</th>`;
-  tableContainer.append(firstRow);
+  calculator.ui.tableContainer.append(firstRow);
   
   for (let row = 1; row < calculator.distance; row++) {
     let gridRow = document.createElement('tr');
     gridRow.innerHTML = `<th>${row}</th><td>${secondsToHms(paceSlower)}</td><td>${secondsToHms(pace)}</td><td>${secondsToHms(paceFaster)}</td>`;
-    tableContainer.append(gridRow);
+    calculator.ui.tableContainer.append(gridRow);
     pace += paceCalculated;
     paceSlower += pace5SecSlower;
     paceFaster += pace5SecFaster;
@@ -113,7 +115,7 @@ calculator.displayResult = function() {
     <td>${getTotalTime(pace5SecSlower, calculator.distance)}</td>
     <td>${getTotalTime(paceCalculated, calculator.distance)}</td>
     <td>${getTotalTime(pace5SecFaster, calculator.distance)}</td>`;
-  tableContainer.append(lastRow);
+  calculator.ui.tableContainer.append(lastRow);
 }
 
 
@@ -121,3 +123,6 @@ calculator.displayResult = function() {
 window.onload = calculator.createTimeOptions;
 
 calculator.ui.calculateButton.addEventListener('click', calculator.getTimeRequested);
+calculator.ui.resetButton.addEventListener('click', function() {
+  calculator.ui.tableContainer.innerHTML = "";
+});
